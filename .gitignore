@@ -1,0 +1,44 @@
+# Rust specific ignores
+**/target/
+**/*.rs.bk
+Cargo.lock
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Backup files
+**/*~
+
+# Ignore all .env files
+**/.env
+
+# Ignore compiled files
+**/*.exe
+**/*.dll
+**/*.so
+**/*.dylib
+
+# Ignore log files
+**/*.log
+
+# Ignore temporary files
+**/tmp/
+**/temp/
+
+# Ignore Rust documentation
+**/doc/
+
+# Ignore Rust test output
+**/tests/output/
+
+# Project specific ignores can be added here
+# For example:
+# todocli/todos.json
+todocli/todos.json

@@ -1,0 +1,35 @@
+# Rust 编译产生的文件
+/target/
+
+# 删除 Cargo.lock 文件（如果您的项目是一个库，则应该保留此文件）
+# Cargo.lock
+
+# 备份文件
+**/*.rs.bk
+
+# IDE 和编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS 系统文件
+.DS_Store
+
+# Windows 系统文件
+Thumbs.db
+
+# 如果您使用 rustfmt，可能会生成的临时文件
+**/*.rs.fmt
+
+# 如果您使用 clippy，可能会生成的临时文件
+**/*.rs.clippy
+
+# 如果您的项目生成文档，可以排除文档目录
+/doc/
+
+# 如果您的项目有测试输出，可以排除测试目录
+/tests/output/
+
+# 如果您的项目使用了 JSON 文件存储数据，可以排除它（根据需要调整）
+todos.json
