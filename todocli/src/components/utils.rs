@@ -2,30 +2,6 @@ use crate::components::todo::Todo;
 use chrono::{DateTime, Utc};
 use colored::*;
 use prettytable::{format, Cell, Row, Table};
-use std::fs::{File, OpenOptions};
-use std::io::{Read, Write};
-use std::path::PathBuf;
-
-pub fn load_todos(file_path: &PathBuf) -> Vec<Todo> {
-    let mut file = match File::open(file_path) {
-        Ok(file) => file,
-        Err(_) => return Vec::new(),
-    };
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-    serde_json::from_str(&contents).unwrap_or_else(|_| Vec::new())
-}
-
-pub fn save_todos(file_path: &PathBuf, todos: &Vec<Todo>) {
-    let json = serde_json::to_string_pretty(todos).unwrap();
-    let mut file = OpenOptions::new()
-        .write(true)
-        .create(true)
-        .truncate(true)
-        .open(file_path)
-        .unwrap();
-    file.write_all(json.as_bytes()).unwrap();
-}
 
 pub fn print_banner() {
     println!(
