@@ -6,6 +6,8 @@ use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 mod components;
 mod routes;
 use crate::components::SqliteStorage;
+mod middleware;
+use middleware::request_logger::log_request;
 
 #[tokio::main]
 async fn main() {
@@ -27,7 +29,8 @@ async fn main() {
                 .allow_origin("http://localhost:3000".parse::<HeaderValue>().unwrap())
                 .allow_methods([Method::GET, Method::POST, Method::PUT, Method::DELETE]),
         )
-        .layer(TraceLayer::new_for_http());
+        .layer(TraceLayer::new_for_http())
+        .layer(axum::middleware::from_fn(log_request));
 
     // Run our app with hyper
     // let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
