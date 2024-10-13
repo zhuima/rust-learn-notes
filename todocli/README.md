@@ -1,66 +1,73 @@
-# Todo CLI
+# Todo API
 
-Todo CLI 是一个简单而强大的命令行待办事项管理工具，使用 Rust 编写。它允许您创建、查看、完成和删除待办事项，所有这些都可以通过简单的命令行界面完成。
+Todo API is a simple and powerful RESTful API for managing todo items, built with Rust and Axum.
 
-## 功能
+## Features
 
-- 添加新的待办事项
-- 列出所有待办事项
-- 将待办事项标记为已完成
-- 删除待办事项
+- Create new todo items
+- List all todo items
+- Get a specific todo item
+- Update existing todo items
+- Delete todo items
 
-## 安装
+## Installation
 
-确保您的系统上安装了 Rust 和 Cargo。然后，按照以下步骤操作：
+1. Ensure you have Rust and Cargo installed on your system.
+2. Clone this repository:
 
-1. 克隆此仓库：
+   ```
+   git clone https://github.com/yourusername/todocli.git
+   cd todocli
+   ```
 
-```rust
-git clone https://github.com/yourusername/todocli.git
-cd todocli
-cargo run --
-```
+3. Build the project:
 
-2. 构建项目：
+   ```
+   cargo build --release
+   ```
 
-```rust
-cargo build --release
-```
+## Running the Server
 
-3. 可执行文件将在 `target/release` 目录中生成。
-
-## 使用方法
-
-### 添加新的待办事项
+To start the server, run:
 
 ```rust
-cargo run -- add --title "完成项目报告" --description "包括上周的进度总结"
+cargo run
 ```
 
-### 列出所有待办事项
+The server will start on `http://localhost:3000`.
 
-```rust
-cargo run -- list
+## API Usage
+
+Here are some curl commands to interact with the API:
+
+### Create a new todo
+
+```bash
+curl -X POST http://localhost:3000/todos \
+-H "Content-Type: application/json" \
+-d '{"title": "Learn Rust", "description": "Study Rust programming language"}'
 ```
 
-### 将待办事项标记为已完成
+### List all todos
 
-```rust
-cargo run -- complete --id 1
+```bash
+curl http://localhost:3000/todos
 ```
 
-### 删除待办事项
+### Get a specific todo
 
-```rust
-cargo run -- delete --id 1
+```bash
+curl http://localhost:3000/todos/1
 ```
 
-## 数据存储
+### Update a todo
 
-所有的待办事项都存储在项目根目录下的 `todos.json` 文件中。
+```bash
+curl -X PUT http://localhost:3000/todos/1 -H "Content-Type: application/json" -d '{"title": "Learn Rust", "description": "Study Rust programming language"}'
+```
 
-## 依赖项
+### Delete a todo
 
-- structopt: 用于解析命令行参数
-- serde 和 serde_json: 用于序列化和反序列化数据
-- chrono: 用于处理日期和时间
+```bash
+curl -X DELETE http://localhost:3000/todos/1
+```
